@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dessert</title>
+    <link rel="stylesheet" href="css/dessert.css" />
+  </head>
+
+  <body>
+    <div id="dessertquestion">Which dessert we eatin cuh</div>
+
+    <div class="dessert-selection">
+
+      <div class="dessert-item">
+        <img src="food/mojito.jpg" alt="mojito" />
+        <label><input type="checkbox" name="dessert" value="Mojito" /> Mojito</label>
+      </div>
+
+      <div class="dessert-item">
+        <img src="food/cake.jpg" alt="cake" />
+        <label><input type="checkbox" name="dessert" value="Chocolate Lava Cake" /> Chocolate Lava Cake</label>
+      </div>
+
+      <div class="dessert-item">
+        <img src="food/lassi.jpg" alt="lassi" />
+        <label><input type="checkbox" name="dessert" value="Lassi" /> Lassi</label>
+      </div>
+
+      <div class="dessert-item">
+        <img src="food/bengalisweet.jpg" alt="bengalisweet" />
+        <label><input type="checkbox" name="dessert" value="Bengalisweet" /> Bengali sweet</label>
+      </div>
+
+      <div class="dessert-item">
+        <img src="food/rasmalai.jpg" alt="rasmalai" />
+        <label><input type="checkbox" name="dessert" value="Rasmalai" /> Rasmalai</label>
+      </div>
+
+      <div class="dessert-item">
+        <img src="food/icecream.jpg" alt="icecream" />
+        <label><input type="checkbox" name="dessert" value="Icecream" /> Ice-cream</label>
+      </div>
+
+    </div>
+
+    <!-- FIXED BUTTON -->
+    <button class="button" id="dessertNext">
+      Continue UwU
+    </button>
+
+    <!-- SCRIPT SECTION -->
+    <script>
+      document.getElementById("dessertNext").addEventListener("click", function () {
+
+        // Collect selected desserts
+        let selectedDessert = [];
+        document.querySelectorAll("input[name='dessert']:checked").forEach(item => {
+          selectedDessert.push(item.value);
+        });
+
+        // Save to localStorage
+        localStorage.setItem("selectedDessert", selectedDessert.join(", "));
+
+        // Go to next page
+        window.location.href = "activities.html";
+      });
+    </script>
+
+  </body>
+</html>

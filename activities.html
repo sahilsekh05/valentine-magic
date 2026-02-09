@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activities</title>
+    <link rel="stylesheet" href="css/activities.css" />
+
+    <style>
+      #loadingScreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 228, 230, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        font-size: 24px;
+        color: #ff8ba0;
+        font-weight: bold;
+        font-family: "Courier New", monospace;
+        z-index: 999;
+      }
+
+      .loader {
+        border: 6px solid #ffccd5;
+        border-top: 6px solid #ff8ba0;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        animation: spin 1s linear infinite;
+        margin-top: 15px;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="activityquestion"><b>What are we doing after?</b></div>
+
+    <div class="activities-selection">
+      <div class="activity-item">
+        <img src="activities/nicopark.jpg" alt="nicopark" />
+        <label><input type="checkbox" name="activities" value="Nico park" />Nico park</label>
+      </div>
+
+      <div class="activity-item">
+        <img src="activities/bowling.jpg" alt="bowling" />
+        <label><input type="checkbox" name="activities" value="Bowling" />Bowling</label>
+      </div>
+
+      <div class="activity-item">
+        <img src="activities/cinema.jpeg" alt="cinema" />
+        <label><input type="checkbox" name="activities" value="Movie" />Movie</label>
+      </div>
+
+      <div class="activity-item">
+        <img src="activities/cafe.jpg" alt="cafe" />
+        <label><input type="checkbox" name="activities" value="Cafe" />cafe</label>
+      </div>
+
+      <div class="activity-item">
+        <img src="activities/mall.jpg" alt="mall" />
+        <label><input type="checkbox" name="activities" value="Mall" />Mall</label>
+      </div>
+
+      <div class="activity-item">
+        <img src="activities/drive.jpg" alt="drive" />
+        <label><input type="checkbox" name="activities" value="Long drive" />Long Drive</label>
+      </div>
+    </div>
+
+    <button class="button" id="submitChoices">Last page ...</button>
+
+    <div id="loadingScreen">
+      Sending your cute answers... 💗
+      <div class="loader"></div>
+    </div>
+
+    <script>
+      document.getElementById("submitChoices").addEventListener("click", function () {
+
+        let selectedActivities = [];
+        document.querySelectorAll("input[name='activities']:checked").forEach(item => {
+          selectedActivities.push(item.value);
+        });
+
+        localStorage.setItem("selectedActivities", selectedActivities.join(", "));
+
+        const data = {
+          date: localStorage.getItem("selectedDate") || "",
+          food: localStorage.getItem("selectedFood") || "",
+          dessert: localStorage.getItem("selectedDessert") || "",
+          activities: selectedActivities.join(", ")
+        };
+
+        document.getElementById("loadingScreen").style.display = "flex";
+
+        fetch("https://script.google.com/macros/s/AKfycbzID4n399hwFUISPEGMkucsPFgtxKVywHgu42-ZWAye_yMVmlisiJ6tn9wFvWKw7PdadA/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        setTimeout(() => {
+          window.location.href = "lastpage.html";
+        }, 1200);
+      });
+    </script>
+
+  </body>
+</html>

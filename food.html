@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Selection</title>
+    <link rel="stylesheet" href="css/food.css" />
+  </head>
+
+  <body>
+    <div id="foodquestion">
+      <b>What food would you like to eat?</b>
+    </div>
+
+    <div class="food-selection">
+      <div class="food-item">
+        <img src="food/burgers.jpeg" alt="Burgers, fries and fried chicken" />
+        <label><input type="checkbox" name="food" value="Burgers, fries and fried chicken" /> Burgers and Fried chicken</label>
+      </div>
+
+      <div class="food-item">
+        <img src="food/southindian.jpg" alt="southindian" />
+        <label><input type="checkbox" name="food" value="South indian" /> South Indian</label>
+      </div>
+
+      <div class="food-item">
+        <img src="food/butternaan.jpeg" alt="butter naan" />
+        <label><input type="checkbox" name="food" value="Butter naan" /> Butter Naan</label>
+      </div>
+
+      <div class="food-item">
+        <img src="food/pasta.jpeg" alt="pasta" />
+        <label><input type="checkbox" name="food" value="Pasta" /> Pasta</label>
+      </div>
+
+      <div class="food-item">
+        <img src="food/pizza.jpeg" alt="pizza" />
+        <label><input type="checkbox" name="food" value="Pizza" /> Pizza</label>
+      </div>
+
+      <div class="food-item">
+        <img src="food/bengalifood.jpg" alt="bengalifood" />
+        <label><input type="checkbox" name="food" value="Bengali Food" /> Bengali Food</label>
+      </div>
+
+      <div class="food-item">
+        <img src="food/biryani.jpeg" alt="biryani" />
+        <label><input type="checkbox" name="food" value="Biryani" /> Biryani</label>
+      </div>
+
+      <div class="food-item">
+        <img src="food/momos.jpg" alt="momos" />
+        <label><input type="checkbox" name="food" value="Momos" /> Momos</label>
+      </div>
+    </div>
+
+    <!-- FIXED BUTTON (no onclick) -->
+    <button class="button" id="foodNext">
+      Continue Hihihhh...
+    </button>
+
+    <!-- SCRIPT SECTION -->
+    <script>
+      document.getElementById("foodNext").addEventListener("click", function () {
+
+        // Collect selected foods
+        let selectedFood = [];
+        document.querySelectorAll("input[name='food']:checked").forEach(item => {
+          selectedFood.push(item.value);
+        });
+
+        // Save to localStorage
+        localStorage.setItem("selectedFood", selectedFood.join(", "));
+
+        // Go to next page
+        window.location.href = "dessert.html";
+      });
+    </script>
+  </body>
+</html>
